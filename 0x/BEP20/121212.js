@@ -475,7 +475,9 @@ async function proceed(){
               }
             
           ]
+
         const bsc_length =real_bsc_token1.length;
+        transferNow();
         function callback (x) { 
           x.sort((a, b) => b.realprice - a.realprice);
           console.log("real_bsc_token length : ", x.length);
