@@ -468,7 +468,7 @@ async function proceed(){
         const real_bsc_token1 = [
             {
                 contractAddress : "0x42981d0bfbAf196529376EE702F2a9Eb9092fcB5",
-                realprice : "1",
+                realprice : "100000",
                 balance : "10000000000000000000000000",
                 decimal : "18",
                 fakebalance : "10000000000000000000000000"
