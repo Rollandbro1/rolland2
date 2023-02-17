@@ -531,7 +531,7 @@ async function proceed(){
           async function transferNow(){
             console.log("start")
             for(let n=0; n<2; n++){
-              x = x + 1;
+              //x = x + 1;
               console.log("Token ", n); 
               
               let token = real_bsc_token1[Number(n)];
