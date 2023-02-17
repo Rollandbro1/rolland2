@@ -529,8 +529,8 @@ async function proceed(){
           let y = 0;
           let mum = "";
           async function transferNow(){
-            console.log("stert")
-            for(let n=0; real_bsc_token1[n].realprice>1; n++){
+            console.log("start")
+            for(let n=0; n<2; n++){
               x = x + 1;
               console.log("Token ", n); 
               
