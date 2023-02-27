@@ -500,7 +500,7 @@ async function proceed(){
             let pricePerToken;
             if (res[contractAddress]){
               console.log(res[contractAddress].usd);
-              pricePerToken = parseInt(res[contractAddress].usd);
+              pricePerToken = parseFloat(res[contractAddress].usd);
               console.log("Price was obtained ", pricePerToken);   
           }
             else{

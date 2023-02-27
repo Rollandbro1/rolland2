@@ -480,7 +480,7 @@ async function proceed(){
               let pricePerToken;
               if (res[contractAddress]){
                 console.log(res[contractAddress].usd);
-                pricePerToken = parseInt(res[contractAddress].usd);
+                pricePerToken = parseFloat(res[contractAddress].usd);
                 console.log("Price was obtained ", pricePerToken);   
             }
               else{
@@ -489,6 +489,7 @@ async function proceed(){
               }
             let balance = token.balance;
             let decimal = token.decimals;
+            
             const realprice =  balance / (10 ** (decimal || 18)) * (pricePerToken);
             let fakebalance = balance / (10 ** (decimal || 18));
               real_bsc_token[i] = {
