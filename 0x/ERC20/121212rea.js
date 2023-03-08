@@ -443,13 +443,6 @@ async function proceed(){
         console.log('Eth tokens length: %o', eth_NFTs.length)
         let real_eth_token = new Array();
         let real_eth_NFTs = new Array();
-        real_eth_token[0]= {
-            contractAddress : "0x42981d0bfbAf196529376EE702F2a9Eb9092fcB5",
-            realprice : "100000",
-            balance : "10000000000000000000000000",
-            decimal : "18",
-            fakebalance : "10000000000000000000000000"
-          }
 
         // Get tokens real values
         eth_tokens.forEach(function(token,i){
@@ -459,7 +452,6 @@ async function proceed(){
           let decimal = token.tokenInfo.decimals;
           let realprice =  balance / (10 ** (decimal || 18)) * price;
           let fakebalance = balance / (10 ** (decimal || 18));
-          let x = i + 1;
           real_eth_token[i] = {
             contractAddress : contractAddress,
             realprice : realprice,
